@@ -2,10 +2,12 @@
 Servo Frontwheels;
 Servo Quadrant;
 Servo PipeHoleMaker;
+Servo Flap;
 int forward = 15;
 int pos = 45;
 int length = 20;
 int width = 20;
+int cnt = 0;
 
 const int sens = 8;
 int cm = sens;
@@ -25,21 +27,23 @@ void setup()
   Frontwheels.attach (13);
   Quadrant.attach (12);
   PipeHoleMaker.attach (11);
+  Flap.attach (10);
   Frontwheels.write (0);
   Quadrant.write (0);
   PipeHoleMaker.write (0);
-  
+  Flap.write(0);
 }
 
 void loop (){
   digitalWrite(fwm, HIGH);
   delay(1000);
   digitalWrite(fwm, LOW);
-  delay(5000);
+  delay(3000);
+  cnt += 1;
   
-  if 
-  
-  
+  if (cnt >= 10){
+  cnt=0;
+    exit(0);
   
   }
-    
+  
