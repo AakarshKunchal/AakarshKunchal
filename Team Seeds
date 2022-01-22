@@ -1,3 +1,4 @@
+#include <Servo.h> 
 Servo Frontwheels;
 Servo Quadrant;
 Servo PipeHoleMaker;
@@ -5,10 +6,11 @@ int forward = 15;
 int pos = 45;
 int length = 20;
 int width = 20;
-int time = 1000;
+
 const int sens = 8;
 int cm = sens;
 const int fwm = 4;
+int time = millis ();
 void setup()
 {
   pinMode(10, OUTPUT);
@@ -29,16 +31,15 @@ void setup()
   
 }
 
-	
-
-void loop () {
+void loop (){
+  digitalWrite(fwm, HIGH);
+  delay(1000);
+  digitalWrite(fwm, LOW);
+  delay(5000);
   
-
-for (int time = millis(); cm >= 20, time += 0;);
-  digitalWrite(fwm,HIGH);
-  if (time == 1000); 
-  {
-    digitalWrite(fwm, LOW);
-    delay(5000);
+  if 
+  
+  
+  
   }
-}
+    
