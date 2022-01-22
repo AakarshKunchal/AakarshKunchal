@@ -34,6 +34,7 @@ void setup()
   pinMode(13, OUTPUT);
   pinMode(11,OUTPUT);
   pinMode(8, OUTPUT);
+  pinMode(6, OUTPUT);
   pinMode(3,OUTPUT);
   pinMode(4,OUTPUT);
   pinMode(1,OUTPUT);
@@ -48,7 +49,7 @@ void setup()
 
 void loop ()
 { 
-  Frontwheels.write (90);
+  Frontwheels.write (90);// servo setting angle
   delay(500);
   
    cm = 0.01723 * readUltrasonicDistance(7, 7);
@@ -60,9 +61,9 @@ void loop ()
   Serial.println("cm");
   delay(100); // Wait for 100 millisecond(s)
   
-  if (cm >=101)
+  if (cm >=101)// ultrasonic 1st command
   {
-  
+  digitalWrite(6, LOW); // 0 voltage passing to the buzzer
     
   for (int rotations = 0; rotations <= 2; rotations += 1)// to start 'for' loop
   {
@@ -119,7 +120,8 @@ if (cm <=100)//if distance is too less
   Frontwheels.write (90);
   PipeHoleMaker.write (0);
   Flap.write(0);
-  digitalWrite(3, LOW);
+  digitalWrite(3, LOW); // to stop other functions except the buzzer
   digitalWrite(5, LOW);
+  digitalWrite(6, HIGH);
 }
 // this whole thing is a complete loop
