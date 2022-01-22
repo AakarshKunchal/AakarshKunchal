@@ -51,10 +51,13 @@ void loop ()
     delay (500);
     PipeHoleMaker.write(180);
     delay (500);
-    PipeHoleMaker.write(180);
+    PipeHoleMaker.write(0);
     delay(500);
     Flap.write(pos);
     delay (300);
-    Flap.write (180);
+    Flap.write (0);
+    
   } 
+
+  
 }
