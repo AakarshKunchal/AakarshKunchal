@@ -1,14 +1,13 @@
-#include <Servo.h> 
+#include <Servo.h> ;
 Servo Frontwheels;
 Servo Quadrant;
 Servo PipeHoleMaker;
 Servo Flap;
 int forward = 15;
-int pos = 45;
+int pos = 90;
 int length = 20;
 int width = 20;
 int cnt = 0;
-
 const int sens = 8;
 int cm = sens;
 const int fwm = 4;
@@ -34,16 +33,28 @@ void setup()
   Flap.write(0);
 }
 
-void loop (){
+void loop ()
+{
   digitalWrite(fwm, HIGH);
   delay(1000);
   digitalWrite(fwm, LOW);
   delay(3000);
   cnt += 1;
   
-  if (cnt >= 10){
+  if (cnt >= 20)
+  {
   cnt=0;
-    exit(0);
-  
-  }
-  
+   }
+  if (fwm == LOW);
+  {
+  	Quadrant.write (pos);
+    delay (500);
+    PipeHoleMaker.write(180);
+    delay (500);
+    PipeHoleMaker.write(180);
+    delay(500);
+    Flap.write(pos);
+    delay (300);
+    Flap.write (180);
+  } 
+}
