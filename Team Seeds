@@ -1,8 +1,8 @@
 #include <Servo.h> ;
-Servo Frontwheels;
+Servo Frontwheels; // servo setup
 Servo PipeHoleMaker;
 Servo Flap;
-int forward = 15;
+int forward = 15; // some integers
 int pos = 90;
 int length = 20;
 int width = 20;
@@ -13,7 +13,7 @@ int time = millis ();
 
 void setup()
 {
-  pinMode(10, OUTPUT);
+  pinMode(10, OUTPUT);// pinmodes
   pinMode(13, OUTPUT);
   pinMode(11,OUTPUT);
   pinMode(8, OUTPUT);
@@ -21,34 +21,62 @@ void setup()
   pinMode(4,OUTPUT);
   pinMode(1,OUTPUT);
   pinMode(5,OUTPUT);
-  Frontwheels.attach (13);
+  Frontwheels.attach (13); // servo attachment declaration
   PipeHoleMaker.attach (11);
   Flap.attach (10);
-  Frontwheels.write (0);
+  Frontwheels.write (90);
   PipeHoleMaker.write (0);
   Flap.write(0);
 }
 
 void loop ()
-{
-  for (int rotations = 0; rotations <= 20; rotations += 1)
+{ 
+  for (int rotations = 0; rotations <= 2; rotations += 1)// to start 'for' loop
   {
-  digitalWrite(3, HIGH); // This loop 
-  delay(1000);
-  digitalWrite(3, LOW);
+  digitalWrite(3, HIGH); // This loop is for the 1st lane out of 20
+  delay(1000); //The loop starts a cycle for the process of sowing the seed
+  digitalWrite(3, LOW); // Wheel movement
   delay(300);
-  digitalWrite(5, HIGH);
+  digitalWrite(5, HIGH);// Quadrant movement
   delay (1000);
   digitalWrite(5, LOW);
   delay(500);
-  PipeHoleMaker.write(180);
+  PipeHoleMaker.write(180); // pipe hole  movement
   delay (1000);
   PipeHoleMaker.write(0);
   delay(1000);
-  Flap.write(pos);
+  Flap.write(pos); // flap movement
   delay (1000);
   Flap.write (0);
-  
-  }
-  
-}
+
+ } //end of loop
+  Frontwheels.write(45); // This loop is for turning
+  digitalWrite(3, HIGH); // To enter the second lane
+  delay(1000);
+  Frontwheels.write(90); //To reset the position of the servo
+  digitalWrite(3, LOW); // To stop it from turning
+ for (int rotations = 0; rotations <= 20; rotations += 1)// to start 'for' loop
+  {
+  digitalWrite(3, HIGH); // This loop is for the 2nd lane out of 20
+  delay(1000); //The loop starts a cycle for the process of sowing the seed
+  digitalWrite(3, LOW); // Wheel movement
+  delay(300);
+  digitalWrite(5, HIGH);// Quadrant movement
+  delay (1000);
+  digitalWrite(5, LOW);
+  delay(500);
+  PipeHoleMaker.write(180); // pipe hole  movement
+  delay (1000);
+  PipeHoleMaker.write(0);
+  delay(1000);
+  Flap.write(pos); // flap movement
+  delay (1000);
+  Flap.write (0);
+
+ } //end of loop
+  Frontwheels.write(135); // This loop is for turning
+  digitalWrite(3, HIGH); 
+  delay(1000);
+  Frontwheels.write(90);
+  digitalWrite(3, LOW); // To enter the third lane
+} // end of turning loop
