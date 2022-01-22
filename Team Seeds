@@ -31,6 +31,8 @@ void setup()
 
 void loop ()
 { 
+  Frontwheels.write (90);
+  delay(500);
   for (int rotations = 0; rotations <= 2; rotations += 1)// to start 'for' loop
   {
   digitalWrite(3, HIGH); // This loop is for the 1st lane out of 20
@@ -44,7 +46,7 @@ void loop ()
   PipeHoleMaker.write(180); // pipe hole  movement
   delay (1000);
   PipeHoleMaker.write(0);
-  delay(1000);
+  delay(3000);
   Flap.write(pos); // flap movement
   delay (1000);
   Flap.write (0);
@@ -76,7 +78,8 @@ void loop ()
  } //end of loop
   Frontwheels.write(135); // This loop is for turning
   digitalWrite(3, HIGH); 
-  delay(1000);
+  delay(3000);
   Frontwheels.write(90);
   digitalWrite(3, LOW); // To enter the third lane
 } // end of turning loop
+// this whole thing is a complete loop
