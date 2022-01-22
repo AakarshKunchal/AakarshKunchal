@@ -1,6 +1,5 @@
 #include <Servo.h> ;
 Servo Frontwheels;
-Servo Quadrant;
 Servo PipeHoleMaker;
 Servo Flap;
 int forward = 15;
@@ -16,7 +15,6 @@ void setup()
 {
   pinMode(10, OUTPUT);
   pinMode(13, OUTPUT);
-  pinMode(12,OUTPUT);
   pinMode(11,OUTPUT);
   pinMode(8, OUTPUT);
   pinMode(3,OUTPUT);
@@ -24,11 +22,9 @@ void setup()
   pinMode(6,OUTPUT);
   pinMode(5,OUTPUT);
   Frontwheels.attach (13);
-  Quadrant.attach (12);
   PipeHoleMaker.attach (11);
   Flap.attach (10);
   Frontwheels.write (0);
-  Quadrant.write (0);
   PipeHoleMaker.write (0);
   Flap.write(0);
 }
@@ -38,7 +34,7 @@ void loop ()
   digitalWrite(fwm, HIGH);
   delay(1000);
   digitalWrite(fwm, LOW);
-  delay(3000);
+  delay(5500);
   cnt += 1;
   
   if (cnt >= 20)
@@ -47,14 +43,14 @@ void loop ()
    }
   if (fwm == LOW);
   {
-  	Quadrant.write (pos);
+  	digitalWrite(5, HIGH);
     delay (500);
     PipeHoleMaker.write(180);
-    delay (500);
+    delay (1000);
     PipeHoleMaker.write(0);
-    delay(500);
+    delay(1000);
     Flap.write(pos);
-    delay (300);
+    delay (1000);
     Flap.write (0);
     
   } 
