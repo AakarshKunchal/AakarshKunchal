@@ -9,8 +9,8 @@ int width = 20;
 int cnt = 0;
 const int sens = 8;
 int cm = sens;
-const int fwm = 4;
 int time = millis ();
+
 void setup()
 {
   pinMode(10, OUTPUT);
@@ -19,7 +19,7 @@ void setup()
   pinMode(8, OUTPUT);
   pinMode(3,OUTPUT);
   pinMode(4,OUTPUT);
-  pinMode(6,OUTPUT);
+  pinMode(1,OUTPUT);
   pinMode(5,OUTPUT);
   Frontwheels.attach (13);
   PipeHoleMaker.attach (11);
@@ -31,29 +31,24 @@ void setup()
 
 void loop ()
 {
-  digitalWrite(fwm, HIGH);
+  for (int rotations = 0; rotations <= 20; rotations += 1)
+  {
+  digitalWrite(3, HIGH); // This loop 
   delay(1000);
-  digitalWrite(fwm, LOW);
-  delay(5500);
-  cnt += 1;
+  digitalWrite(3, LOW);
+  delay(300);
+  digitalWrite(5, HIGH);
+  delay (1000);
+  digitalWrite(5, LOW);
+  delay(500);
+  PipeHoleMaker.write(180);
+  delay (1000);
+  PipeHoleMaker.write(0);
+  delay(1000);
+  Flap.write(pos);
+  delay (1000);
+  Flap.write (0);
   
-  if (cnt >= 20)
-  {
-  cnt=0;
-   }
-  if (fwm == LOW);
-  {
-  	digitalWrite(5, HIGH);
-    delay (500);
-    PipeHoleMaker.write(180);
-    delay (1000);
-    PipeHoleMaker.write(0);
-    delay(1000);
-    Flap.write(pos);
-    delay (1000);
-    Flap.write (0);
-    
-  } 
-
+  }
   
 }
