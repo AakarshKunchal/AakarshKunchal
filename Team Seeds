@@ -13,6 +13,8 @@ void setup()
   pinMode(11,OUTPUT);
   pinMode(3,OUTPUT);
   pinMode(4,OUTPUT);
+  pinMode(6,OUTPUT)
+  pinMode(5,OUTPUT)
   Frontwheels.attach (13);
   Quadrant.attach (12);
   PipeHoleMaker.attach (11);
