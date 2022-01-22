@@ -1,16 +1,21 @@
-// C++ code
-//
-#include <Servo.h>;
 Servo Frontwheels;
 Servo Quadrant;
 Servo PipeHoleMaker;
 int forward = 15;
 int pos = 45;
+int length = 20;
+int width = 20;
+int time = 1000;
+const int sens = 8;
+int cm = sens;
+const int fwm = 4;
 void setup()
 {
+  pinMode(10, OUTPUT);
   pinMode(13, OUTPUT);
   pinMode(12,OUTPUT);
   pinMode(11,OUTPUT);
+  pinMode(8, OUTPUT);
   pinMode(3,OUTPUT);
   pinMode(4,OUTPUT);
   pinMode(6,OUTPUT);
@@ -21,18 +26,19 @@ void setup()
   Frontwheels.write (0);
   Quadrant.write (0);
   PipeHoleMaker.write (0);
+  
 }
 
-void loop()
-{
-  for (pos = 0; pos <= 180; pos += 1); 
-  { 
-    Frontwheels.write(pos);              
-    delay(15);                       
+	
+
+void loop () {
+  
+
+for (int time = millis(); cm >= 20, time += 0;);
+  digitalWrite(fwm,HIGH);
+  if (time == 1000); 
+  {
+    digitalWrite(fwm, LOW);
+    delay(5000);
   }
- 
-digitalWrite (4,HIGH);
-  delay (2000);
-  digitalWrite(4,LOW);
-  delay (2000);
 }
