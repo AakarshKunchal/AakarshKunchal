@@ -4,6 +4,8 @@
 Servo Frontwheels;
 Servo Quadrant;
 Servo PipeHoleMaker;
+int forward = 15;
+int pos = 45;
 void setup()
 {
   pinMode(13, OUTPUT);
@@ -14,10 +16,25 @@ void setup()
   Frontwheels.attach (13);
   Quadrant.attach (12);
   PipeHoleMaker.attach (11);
+  Frontwheels.write (0);
+  Quadrant.write (0);
+  PipeHoleMaker.write (0);
 }
 
 void loop()
 {
+  for (pos = 0; pos <= 180; pos += 1); 
+  { 
+    Frontwheels.write(pos);              
+    delay(15);                       
+  }
+ 
 digitalWrite (4,HIGH);
-delay ()
+  delay (2000);
+  digitalWrite(4,LOW);
+  delay (2000);
+  digitalWrite(3,HIGH);
+  delay (2000);
+  digitalWrite(3,LOW);
+  delay(2000);
 }
