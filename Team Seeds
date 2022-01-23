@@ -7,9 +7,11 @@ int pos = 90;
 int length = 20;
 int width = 20;
 int cnt = 0;
+const int sens = 8;
+
 int time = millis ();
-
-
+int inches = 0;
+int cm = 0;
 
 long readUltrasonicDistance(int triggerPin, int echoPin)
 {
@@ -35,34 +37,33 @@ void setup()
   pinMode(6, OUTPUT);
   pinMode(3,OUTPUT);
   pinMode(4,OUTPUT);
+  pinMode(1,OUTPUT);
   pinMode(5,OUTPUT);
   Frontwheels.attach (13); // servo attachment declaration
   PipeHoleMaker.attach (11);
   Flap.attach (10);
   Frontwheels.write (90);
-  PipeHoleMaker.write (0);
-  Flap.write(0);
+
 }
 
 void loop ()
 {
-  Frontwheels.write (90);// servo setting angle
+  Frontwheels.write (90);
   delay(500);
  
-   int cm = 0.01723 * readUltrasonicDistance(7, 7);
+   cm = 0.01723 * readUltrasonicDistance(7, 7);
   // convert to inches by dividing by 2.54
-  int inches = (cm / 2.54);
+  inches = (cm / 2.54);
   Serial.print(inches);
   Serial.print("in, ");
   Serial.print(cm);
   Serial.println("cm");
   delay(100); // Wait for 100 millisecond(s)
  
-  if (cm >=101)// ultrasonic 1st command
+  if (cm >=151)
   {
-  digitalWrite(6, LOW); // 0 voltage passing to the buzzer
-   
-  for (int rotations = 0; rotations <= 2; rotations += 1)// to start 'for' loop
+  digitalWrite(6, LOW);
+  for (int rotations = 0; rotations <=2; rotations += 1)// to start 'for' loop
   {
   digitalWrite(3, HIGH); // This loop is for the 1st lane out of 20
   delay(1000); //The loop starts a cycle for the process of sowing the seed
@@ -71,14 +72,15 @@ void loop ()
   digitalWrite(5, HIGH);// Quadrant movement
   delay (1000);
   digitalWrite(5, LOW);
-  delay(500);
+  delay(1000);
   PipeHoleMaker.write(180); // pipe hole  movement
   delay (1000);
   PipeHoleMaker.write(0);
-  delay(3000);
+  delay(1000);
   Flap.write(pos); // flap movement
   delay (1000);
   Flap.write (0);
+    delay(200);
 
  } //end of loop
   Frontwheels.write(45); // This loop is for turning
@@ -86,7 +88,7 @@ void loop ()
   delay(1000);
   Frontwheels.write(90); //To reset the position of the servo
   digitalWrite(3, LOW); // To stop it from turning
- for (int rotations = 0; rotations <= 20; rotations += 1)// to start 'for' loop
+ for (int rotations = 0; rotations <= 2; rotations += 1)// to start 'for' loop
   {
   digitalWrite(3, HIGH); // This loop is for the 2nd lane out of 20
   delay(1000); //The loop starts a cycle for the process of sowing the seed
@@ -103,6 +105,7 @@ void loop ()
   Flap.write(pos); // flap movement
   delay (1000);
   Flap.write (0);
+   delay(200);
 
  } //end of loop
   Frontwheels.write(135); // This loop is for turning
@@ -111,4 +114,16 @@ void loop ()
   Frontwheels.write(90);
   digitalWrite(3, LOW); // To enter the third lane
 } // end of turning loop
+
+if (cm <=150)//if distance is too less
+{
+  Frontwheels.write (90);
+  PipeHoleMaker.write (0);
+  Flap.write(0);
+  digitalWrite(3, LOW);
+  digitalWrite(5, LOW);
+  digitalWrite(6, HIGH);
 }
+}
+
+// this whole thing is a complete loop
